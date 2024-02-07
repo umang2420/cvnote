@@ -1,0 +1,76 @@
+<form [formGroup]="CvForm" class="example-form">
+    <h1>Resume</h1>
+    <mat-form-field class="example-full-width">
+        <mat-label>Enter Name</mat-label>
+        <input matInput type="text" formControlName="UserName">
+    </mat-form-field>
+    <div [hidden]="visible">
+        <mat-form-field class="example-full-width">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="UserEmail">
+        </mat-form-field>
+    </div>
+    <div [hidden]="visible">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Enter your Number</mat-label>
+            <input matInput  placeholder="94XXXXXXXX" formControlName="UserNumber">
+        </mat-form-field>
+    </div>
+    <div [hidden]="visible">
+        <mat-form-field class="example-full-width">
+            <mat-label>date</mat-label>
+            <input matInput type="date" placeholder="DOB" formControlName="UserDate">
+        </mat-form-field>
+    </div>
+    <div class="example-button-row">
+        <button mat-raised-button color="accent" (click)="DeleteValue()">Delete</button>
+        <button mat-raised-button color="accent" (click)="editBtnHandler()">
+            {{ btnEdit}}
+        </button>
+    </div>
+
+    <h2>About Me!</h2>
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Ex. It makes me feel..." formControlName="UserText"></textarea>
+    </mat-form-field>
+    <div class="example-button-row">
+        <button mat-raised-button color="accent" (click)="editBtnHandler()">
+            {{ btnEdit}}
+        </button>
+    </div>
+    
+    <h2>Skills!</h2>
+    <div>
+        <ul>
+            <li *ngFor="let item of items;   let i = index" [ngClass]="item == 'left' ? 'LeftSide' : 'RightSide'">
+                <input type="text" value="{{item}}" (click)="editItem(i)">
+                <mat-list role="list">
+                    <button mat-icon-button (click)="DeleteList(i)"><mat-icon>delete</mat-icon></button>
+                </mat-list>
+            </li>
+        </ul>
+    </div>
+    <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="editBtnHandler()">Edit</button>
+        <button mat-raised-button color="primary" (click)="discardListChanges()">Discard</button>
+        <button mat-raised-button color="primary" (click)="AddList()">Add</button>
+    </div>
+
+    <h2>Languages!</h2>
+    <div>
+        <ul>
+            <li *ngFor="let language of languages;   let i = index" [ngClass]="language == 'left' ? 'LeftSide' : 'RightSide'">
+                <input type="text" value="{{language}}" (click)="editLanguage(i)">
+                <mat-list role="list">
+                    <button mat-icon-button (click)="DeleteLanguage(i)"><mat-icon>delete</mat-icon></button>
+                </mat-list>
+            </li>
+        </ul>
+    </div>
+    <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="editBtnHandler()">Edit</button>
+        <button mat-raised-button color="primary" (click)="discardLanguageChanges()">Discard</button>
+        <button mat-raised-button color="primary" (click)="AddLanguage()">Add</button>
+    </div>
+</form>

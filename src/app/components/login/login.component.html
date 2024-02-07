@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm" (ngSubmit)="loginValue()">
+    <div class="box">
+        <h2>Login-Form</h2>
+        <input type="text" placeholder="enter name" formControlName="UserName">
+        <br>
+        <span style="color: red;" *ngIf="UserName && UserName.invalid ">kindly fill Name</span>
+        <input type="password" placeholder="enter password" formControlName="Password">
+        <br>
+        <span style="color: red;" *ngIf="Password && Password.invalid ">kindly fill Password</span>
+        <br>
+        <button>Submit</button>
+    </div>
+</form>

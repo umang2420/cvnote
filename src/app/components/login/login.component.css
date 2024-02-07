@@ -1,0 +1,30 @@
+
+.box{
+    max-width: 600px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2{
+    text-align: center;
+    color: #333;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button {
+    margin: 15px 10px;
+    background-color: #6f98eae8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}

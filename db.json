@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": "c79e",
+      "UserName": "harry",
+      "Password": "12345"
+    },
+    {
+      "id": "a555",
+      "UserName": "umang",
+      "Password": "54321"
+    }
+  ],
+  "CvNote": [
+    {
+      "UserName": "harry",
+      "UserEmail": "121@gmail.com",
+      "UserNumber": "987654321",
+      "UserDate": "0200-02-21",
+      "UserText": "hello ! my name is Harry",
+      "UserList": "hello",
+      "id": "e2f6"
+    },
+    {
+      "UserName": "umang",
+      "UserEmail": "",
+      "UserNumber": "",
+      "UserDate": "",
+      "UserText": "",
+      "items": [
+        "Hard Working",
+        "Adjustable Nature",
+        "Opportunity Facing"
+      ],
+      "languages": [
+        "hgfx",
+        "hindi",
+        "Punjabi"
+      ],
+      "userId": "a555",
+      "id": "a376"
+    }
+  ]
+}
