@@ -22,8 +22,9 @@
     noteID: any;
     items = ['Hard Working', 'Adjustable Nature', 'Opportunity Facing'];
     languages = ['English', 'hindi', 'Punjabi'];
-
-    constructor(private service: UserDataService,private CVService: ResumeService) {
+    fileToUpload: any;
+    imageUrl: any;
+    constructor(private service: UserDataService,private CVService: ResumeService,) {
       this.value = JSON.parse(sessionStorage.getItem('loginData') || '{}');
       this.userId = this.value.id;
       this.CVService.getCvNote().subscribe((data) => {
@@ -31,15 +32,24 @@
           if (result.userId === this.value.id) {
             this.currentCv = result;
           }
+          this.CvForm.patchValue({
+            UserEmail: result.UserEmail,
+            UserNumber: result.UserNumber,
+            UserDate: result.UserDate,
+            UserText: result.UserText,
+            items: result.items,
+            languages: result.languages,
+          })
           this.CvNote = data;
           this.CvNote.forEach((user: any) => {
             if (user.id == this.userId) {
               this.noteID.push(user);
-            }
-            console.log(user);
+            } 
+            console.log(user);  
           });
-        });
+        }); 
       });
+      
       this.CvForm = new FormGroup({
         UserName: new FormControl(this.value.UserName),
         UserEmail: new FormControl(''),
@@ -50,6 +60,21 @@
         languages: new FormControl(this.languages),
       });
     }
+  handleFileInput(target: EventTarget | null) {
+  if (target instanceof HTMLInputElement) {
+    const files = target.files;
+    if (files && files.length > 0) {
+      this.fileToUpload = files.item(0);
+      let reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.imageUrl = event.target.result;
+      };
+      reader.readAsDataURL(this.fileToUpload);
+    }
+  }
+}
+
+    
 
     editBtnHandler() {
       this.visible = false;
@@ -67,25 +92,21 @@
           languages: this.CvForm.value.languages,
           userId: this.userId,
         };
-
-        if (this.currentCv.id) {
-          this.CVService.updateNotes(this.currentCv.id, updatedData).subscribe(
-            (result) => {
-              console.log(result);
+        if (this.currentCv) {
+          this.CVService.updateNotes(this.currentCv.id, updatedData).subscribe((result) => {
+              this.currentCv = result;
               alert('Data updated successfully');
               this.btnEdit = 'edit';
-            }
-          );
+            });
         } else {
           this.CVService.userNote(updatedData).subscribe((result) => {
-            console.log(result);
             alert('Data saved successfully');
             this.btnEdit = 'edit';
           });
         }
       }
     }
-
+    
     editItem(i: number) {
       const newItem = prompt('Edit item:', this.items[i]);
       if (newItem !== null) {
@@ -103,7 +124,7 @@
         if (this.currentCv.id) {
           this.CVService.updateNotes(this.currentCv.id, updatedData).subscribe(() => {
             alert('Data updated successfully');
-            this.btnEdit = 'edit';
+            this.btnEdit = 'save';
           });
         } else {
           this.CVService.userNote(updatedData).subscribe(() => {
@@ -175,6 +196,8 @@ discardListChanges() {
 discardLanguageChanges() {
   this.languages = ['English', 'hindi', 'Punjabi'];
   this.CvForm.get('languages')?.setValue(this.languages);
-}
   }
-  
+  displayImage(){
+
+  }
+  }

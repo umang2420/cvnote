@@ -29,7 +29,6 @@ export class LoginComponent {
           sessionStorage.setItem('loginData', JSON.stringify(element));
           this.Route.navigate(['/cv', userId]);
         }
-        alert("user not found")
       })
       })
   }

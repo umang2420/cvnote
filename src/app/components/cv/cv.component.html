@@ -4,17 +4,20 @@
         <mat-label>Enter Name</mat-label>
         <input matInput type="text" formControlName="UserName">
     </mat-form-field>
+  <div>  <!-- <input type="file" name="" id="" accept="image/*" (change)="preview($event)"> -->
+    <input #Image type="file" (change)="handleFileInput($event.target)"/>
+    <img *ngIf="imageUrl" [src]="imageUrl" class="image">
+</div>
     <div [hidden]="visible">
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width"> 
             <mat-label>Enter your email</mat-label>
             <input matInput placeholder="pat@example.com" formControlName="UserEmail">
         </mat-form-field>
     </div>
     <div [hidden]="visible">
-
         <mat-form-field class="example-full-width">
             <mat-label>Enter your Number</mat-label>
-            <input matInput  placeholder="94XXXXXXXX" formControlName="UserNumber">
+            <input matInput placeholder="94XXXXXXXX" formControlName="UserNumber">
         </mat-form-field>
     </div>
     <div [hidden]="visible">
@@ -39,7 +42,7 @@
             {{ btnEdit}}
         </button>
     </div>
-    
+
     <h2>Skills!</h2>
     <div>
         <ul>
@@ -52,7 +55,7 @@
         </ul>
     </div>
     <div class="example-button-row">
-            <button mat-raised-button color="primary" (click)="editBtnHandler()">Edit</button>
+        <button mat-raised-button color="primary" (click)="editBtnHandler()">Edit</button>
         <button mat-raised-button color="primary" (click)="discardListChanges()">Discard</button>
         <button mat-raised-button color="primary" (click)="AddList()">Add</button>
     </div>
@@ -60,7 +63,8 @@
     <h2>Languages!</h2>
     <div>
         <ul>
-            <li *ngFor="let language of languages;   let i = index" [ngClass]="language == 'left' ? 'LeftSide' : 'RightSide'">
+            <li *ngFor="let language of languages;   let i = index"
+                [ngClass]="language == 'left' ? 'LeftSide' : 'RightSide'">
                 <input type="text" value="{{language}}" (click)="editLanguage(i)">
                 <mat-list role="list">
                     <button mat-icon-button (click)="DeleteLanguage(i)"><mat-icon>delete</mat-icon></button>
@@ -69,7 +73,7 @@
         </ul>
     </div>
     <div class="example-button-row">
-            <button mat-raised-button color="primary" (click)="editBtnHandler()">Edit</button>
+        <button mat-raised-button color="primary" (click)="editBtnHandler()">Edit</button>
         <button mat-raised-button color="primary" (click)="discardLanguageChanges()">Discard</button>
         <button mat-raised-button color="primary" (click)="AddLanguage()">Add</button>
     </div>

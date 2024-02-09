@@ -18,7 +18,6 @@ const routes: Routes = [
   {
     path: 'cv/:userId', 
     component: CvComponent,
-
   }
 ];
 @NgModule({
